@@ -33,8 +33,8 @@ public enum BaritoneHelper {
 
     public boolean baritoneExists() {
         //baritoe because fabritone misspells it
-        return FabricLoader.getInstance().getModContainer("baritoe").isPresent() || FabricLoader.getInstance().getModContainer("baritone").isPresent();
-    }
+        return FabricLoader.getInstance().getModContainer("baritoe").isPresent() || FabricLoader.getInstance().getModContainer("baritone").isPresent() || FabricLoader.getInstance().getModContainer("baritone-meteor").isPresent();   
+        }
 
     public void initBaritoneProcesses() {
         if (baritoneExists())
