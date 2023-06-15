@@ -54,13 +54,25 @@ public class AutoFish extends Feature {
             .name("Delay")
             .description("Delay between re-casting the rod.")
             .value(750L)
+            .min(0)
             .max(2000)
+            .inc(20)
             .parent(recastProperty)
             .depends(parent -> (boolean) parent.value())
             .build();
     public final Property<Boolean> reelOnReconnectProperty = new Property.PropertyBuilder<Boolean>(this.getClass())
             .name("Reel on Reconnect")
             .value(true)
+            .build();
+    public final Property<Float> rordProperty = new Property.PropertyBuilder<Float>(this.getClass())
+            .name("Reel on Reconnect Delay")
+            .description("Delay between re-casting the rod.")
+            .value(750L)
+            .min(0)
+            .max(5)
+            .inc(1)
+            .parent(recastProperty)
+            .depends(parent -> (boolean) parent.value())
             .build();
     public final Property<Boolean> showIfOpenWaterProperty = new Property.PropertyBuilder<Boolean>(this.getClass())
             .name("Show If OpenWater")
@@ -104,7 +116,7 @@ public class AutoFish extends Feature {
             return;
         }
         if (hasReconnected) {
-            if (stopWatch1.hasPassed(5000)) {
+            if (stopWatch1.hasPassed(rordProperty.value() * 1000)) {
                 reel();
                 stopWatch1.reset();
                 hasReconnected = false;
