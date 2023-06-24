@@ -126,8 +126,6 @@ public class NoRender extends Feature {
 
     @EventPointer
     private final EventListener<EventTickParticle> eventTickParticleEventListener = new EventListener<>(event -> {
-        if (!particlesProperty.value())
-            return;
         if (event.getParticle() instanceof ExplosionSmokeParticle || event.getParticle() instanceof FireSmokeParticle || event.getParticle() instanceof CampfireSmokeParticle && smokeProperty.value()) {
             event.cancel();
         }
